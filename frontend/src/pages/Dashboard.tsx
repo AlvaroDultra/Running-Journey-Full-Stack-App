@@ -124,12 +124,18 @@ export default function Dashboard() {
 >
   ➕ Registrar Corrida
 </button>
-          <button className="btn-action btn-history">
-            📋 Ver Histórico
-          </button>
-          <button className="btn-action btn-map">
-            🗺️ Ver Mapa
-          </button>
+<button 
+  className="btn-action btn-history"
+  onClick={() => navigate('/historico')}
+>
+  📋 Ver Histórico
+</button>
+          <button 
+  className="btn-action btn-map"
+  onClick={() => navigate('/mapa')}
+>
+  🗺️ Ver Mapa
+</button>
         </div>
       </main>
     </div>

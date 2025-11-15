@@ -1,0 +1,216 @@
+.historico-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  padding: 20px;
+}
+
+.historico-header {
+  max-width: 1000px;
+  margin: 0 auto 30px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.historico-header h1 {
+  color: white;
+  margin: 0;
+  font-size: 32px;
+}
+
+.historico-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.historico-stats {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  margin-bottom: 25px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  color: #f5576c;
+}
+
+.corridas-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.corrida-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+
+.corrida-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.corrida-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.corrida-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.data-principal {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.data-completa {
+  font-size: 13px;
+  color: #999;
+  text-transform: capitalize;
+  margin-top: 4px;
+}
+
+.corrida-km {
+  font-size: 28px;
+  font-weight: 700;
+  color: #f5576c;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.corrida-observacao {
+  background: #f9f9f9;
+  padding: 12px 15px;
+  border-radius: 10px;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 12px;
+  border-left: 3px solid #f5576c;
+}
+
+.corrida-cidade {
+  font-size: 14px;
+  color: #667eea;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+
+.corrida-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.btn-delete {
+  padding: 8px 20px;
+  background: #fee;
+  color: #c33;
+  border: 1px solid #fcc;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.btn-delete:hover {
+  background: #fdd;
+  border-color: #c33;
+}
+
+.empty-state {
+  background: white;
+  border-radius: 20px;
+  padding: 60px 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.empty-icon {
+  font-size: 80px;
+  margin-bottom: 20px;
+}
+
+.empty-state h2 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.empty-state p {
+  margin: 0 0 30px 0;
+  color: #666;
+}
+
+.btn-primary {
+  padding: 14px 30px;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(245, 87, 108, 0.3);
+}
+
+.loading,
+.error-message {
+  background: white;
+  border-radius: 15px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.error-message {
+  color: #c33;
+  border-left: 4px solid #c33;
+}
+
+@media (max-width: 768px) {
+  .corrida-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .corrida-km {
+    font-size: 24px;
+  }
+}

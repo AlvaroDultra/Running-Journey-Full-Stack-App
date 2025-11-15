@@ -3,6 +3,8 @@ import { useAuthStore } from './store/authStore';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import RegistrarCorrida from './pages/RegistrarCorrida';
+import Historico from './pages/Historico';
+import Mapa from './pages/Mapa';
 
 // Componente para proteger rotas privadas
 function PrivateRoute({ children }: { children: React.ReactNode }) {
@@ -51,6 +53,25 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        {/* Rota privada - Histórico */}
+<Route
+  path="/historico"
+  element={
+    <PrivateRoute>
+      <Historico />
+    </PrivateRoute>
+  }
+/>
+
+<Route
+  path="/mapa"
+  element={
+    <PrivateRoute>
+      <Mapa />
+    </PrivateRoute>
+  }
+/>
 
         {/* Redirecionar qualquer outra rota - SEMPRE POR ÚLTIMO! */}
         <Route path="*" element={<Navigate to="/" />} />
