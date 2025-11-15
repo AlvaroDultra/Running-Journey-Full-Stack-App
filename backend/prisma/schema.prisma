@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Modelo de Usuário
+model Usuario {
+  id              String    @id @default(uuid())
+  nome            String
+  email           String    @unique
+  senha           String
+  kmTotal         Float     @default(0)
+  cidadeOrigemId  String?
+  cidadeAtualId   String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Relacionamentos
+  cidadeOrigem    Cidade?   @relation("CidadeOrigem", fields: [cidadeOrigemId], references: [id])
+  cidadeAtual     Cidade?   @relation("CidadeAtual", fields: [cidadeAtualId], references: [id])
+  corridas        Corrida[]
+  trajetos        Trajeto[]
+
+  @@map("usuarios")
+}
+
+// Modelo de Cidade
+model Cidade {
+  id            String   @id @default(uuid())
+  nome          String
+  estado        String
+  siglaEstado   String
+  latitude      Float
+  longitude     Float
+  populacao     Int?
+  createdAt     DateTime @default(now())
+
+  // Relacionamentos
+  usuariosOrigem    Usuario[]  @relation("CidadeOrigem")
+  usuariosAtual     Usuario[]  @relation("CidadeAtual")
+  corridasAlcancadas Corrida[]
+  trajetosOrigem    Trajeto[]  @relation("TrajetoOrigem")
+  trajetosDestino   Trajeto[]  @relation("TrajetoDestino")
+
+  @@unique([nome, estado])
+  @@map("cidades")
+}
+
+// Modelo de Corrida
+model Corrida {
+  id                  String   @id @default(uuid())
+  usuarioId           String
+  data                DateTime @default(now())
+  kmCorridos          Float
+  observacao          String?
+  cidadeAlcancadaId   String?
+  createdAt           DateTime @default(now())
+
+  // Relacionamentos
+  usuario             Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  cidadeAlcancada     Cidade?  @relation(fields: [cidadeAlcancadaId], references: [id])
+
+  @@map("corridas")
+}
+
+// Modelo de Trajeto (rota do usuário)
+model Trajeto {
+  id                String   @id @default(uuid())
+  usuarioId         String
+  cidadeOrigemId    String
+  cidadeDestinoId   String?
+  kmTotal           Float
+  rotaCompleta      Json?
+  ativo             Boolean  @default(true)
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relacionamentos
+  usuario           Usuario  @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  cidadeOrigem      Cidade   @relation("TrajetoOrigem", fields: [cidadeOrigemId], references: [id])
+  cidadeDestino     Cidade?  @relation("TrajetoDestino", fields: [cidadeDestinoId], references: [id])
+
+  @@map("trajetos")
+}
